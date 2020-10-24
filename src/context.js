@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { storeProducts, detailProduct } from "./data";
 import $ from "jquery";
 
-
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
