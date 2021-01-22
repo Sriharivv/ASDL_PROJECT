@@ -8,7 +8,7 @@ import { ProductConsumer } from "../context";
 import "../App.css";
 import {faMobile} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export default class Navbar1 extends Component {
+export default class Navbar2 extends Component {
 
   render() {
     return (
@@ -17,7 +17,7 @@ export default class Navbar1 extends Component {
           const {bool}=value;
           const {signup}=value;
           return(
-          <Navbar   expand="lg">
+          <Navbar  className="Col"  expand="lg">
             <Container>
               <Row>
                   <Link to="/" style={{ textDecoration: 'none' }}>
@@ -28,7 +28,7 @@ export default class Navbar1 extends Component {
                    </Col>
                   </Link>
               </Row>
-              <Row className="SearchBar" >
+              <Row className="SearchBar1" >
                   <input type="text-field" placeholder="Search For A Specialty Or A Physician" expandable="true" onChange={(e)=>value.searchSpace(e)}/>
               </Row>
               <Row>

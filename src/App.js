@@ -4,24 +4,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch } from "react-router-dom";
 import Navbar1 from "./components/Navbar";
 import ProductList from "./components/ProductList";
-import Details from "./components/Details";
+import HospitalList from "./components/HospitalList";
 import Default from "./components/Default";
-import Cart from "./components/Cart";
+
 import Modal from "./components/Modal";
 import Login from "./components/Login";
+import User from "./components/User";
+import Booking from "./components/Booking";
 class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar1/>
         <Switch>
-          <Route exact path="/" component={ProductList} />
-          <Route path="/details" component={Details} />
-          <Route path="/cart" component={Cart} />
+          <Route exact path="/appointments" component={ProductList} />
+          <Route path="/hospitallist" component={HospitalList} />
+          <Route path="/booking" component={Booking} />
+          <Route path="/user" component={User} />
           <Route path="/login" component={Login} />
-          <Route component={Default} />
         </Switch>
-        <Modal />
       </React.Fragment>
     );
   }

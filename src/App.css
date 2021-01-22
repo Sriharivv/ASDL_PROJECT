@@ -45,23 +45,58 @@ body {
 }
 .cards-slider-wrapper1{
   vertical-align: middle;
-  display: inline-block;
-  white-space:nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: 100%;
-  position:relative;
-  top:170px;
-  display:flex;
+  white-space:wrap;
+  max-width:100%;
+  position: relative;
+  top:30px;
+  display:  inline-flex;
+  flex-wrap: wrap;
+padding: 50px;
 
 }
+.cards-slider-wrapper2{
+  vertical-align: middle;
+  max-width:100%;
+  top:300px;
+  text-align:center;
+  display:  inline-flex;
+  flex-wrap: wrap;
+  border: 2px solid black;
+}
+.column{
+  flex:25%;
+  max-width: 25%;
+  padding:0.4px;
+}
 img{
-display:flex;
-justify-content:space-between;
-width: 220px;
-height:auto;
-display:inline-block;
+  justify-content:space-between;
+  width: 300px;
+  height:auto;
+ padding: 30px;
+ position: relative;
+ bottom:80px;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width:20px;
   padding: 10px;
+ overflow-x: hidden;
+ overflow-y: visible;
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 15px 21px 19px 11px rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 2px;
+  position: relative;
+  top:5px;
 }
 .prev, .next {
 
@@ -84,42 +119,18 @@ display:inline-block;
 }
 .icon1{
   position:relative;
-  top:-20px;
-  right:2px;
+  top:330px;
+  right:-30em;
 }
 .icon2{
   position:relative;
-  top:-20px;
-  left:2px;
-}
-
-::-webkit-scrollbar{
-  width:10px;
-  height:7px;
-}
-
-/* Track */
-::-webkit-scrollbar-track{
-  background:lightgrey;
-  border-radius: 10px;
-
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb{
-  background:rgb(169,169,169);
-  border-radius: 10px;
-  width:4em;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  top:274px;
+  right:-55em;
 }
 
 .Fnt4{
-  position:fixed;
-  left:1.3em;
+  position:relative;
+  right:5em;
   color:black;
   text-decoration: none;
 }
@@ -130,17 +141,24 @@ display:inline-block;
   text-decoration: none;
 }
 .Fnt1{
-  position:fixed;
+  position:relative;
+  left:-2em;
   color:black;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 2em;
   font-size: 1.5em;
 }
 .SearchBar {
     height: 48px;
   width: 400px;
 }
-
+.SearchBar1{
+    height: 48px;
+  width: 400px;
+  border-style:solid;
+  border-width: thin;
+  border-radius: 5px;
+}
 .title{
  cursor:text;
   position:relative;
@@ -231,19 +249,21 @@ display:inline-block;
 .b{
   font-size:"15px";
 }
-form {
-  width: 100%;
+
+
+input[type="text-field"]{
+  font-size: 16px;
+  width:100%;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
 }
 
-.loginBox {
-  width: 50%;
-  text-align: center;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 20%);
-  padding: 20px;
+.Col{
   background-color: white;
-  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.4);
 }
 
 .signUpSubmit {
@@ -275,44 +295,8 @@ form {
   color: gray;
 }
 
-@media screen and (max-width: 550px) {
-  .loginBox {
-    width: 85%;
-  }
-}
-input[type=text], select {
-  width: 100%;
-  padding: 7px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-  position: relative;
-  left: 15px;
-}
 
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
-  left: 15px;
-  width: 100%;
-}
-.form1{
-  position: absolute;
-  top:50px;
-}
-.label3{
-  position:relative;
-  left:15px;
 
-}
 .passwordf{
   position:relative;
   border-radius: 3px;
@@ -330,4 +314,119 @@ input[type=submit] {
   padding:10px;
  border-radius: 3px;
  color: black;
+}
+.docdetails{
+  position: relative;
+  left: 600px;
+  font-size: 2.8em;
+  top: 40px;
+  font-weight: bolder;
+   font-family:  serif;
+}
+.info{
+  position: relative;
+  left: 350px;
+  font-size: 1.5em;
+  top: 130px;
+  color:black;
+
+}
+.docname{
+  position:relative;
+  left:40px;
+  font-size: 1.4em;
+  font-weight: bold;
+  top:-55px;
+}
+.usernamepos{position:relative;
+bottom: -80px;
+   left:-60px
+}
+.dashboard{
+  width:350px;
+  height: 650px;
+  background-color: white;
+  color:black;
+  border-radius:5px;
+  position:relative;
+  left:50px;
+  top:55px;
+  border-style:solid ;
+  border-color:black;
+  border-width: thin;
+}
+.dashf{
+  height:300px;
+}
+.dasho{
+  height:60px;
+  font-style: oblique;
+}
+.dashh{
+  height:60px;
+  font-style: oblique;
+}
+.dashuser{
+  height:250px;
+}
+
+.dashpic{
+ position: relative;
+ top: -30px;
+ left:66px;
+ border-width: thin;
+ border-radius: 150px;
+border: 5px double lightgrey;
+border-width: 3px;
+height:170px;
+width:170px;
+}
+.pos{
+  position: fixed;
+  left:440px;
+  top:65px;
+
+}
+.appoid{
+  width:1000px;
+  height: 650px;
+  background-color: white;
+  color:black;
+  border-radius:5px;
+  position:relative;
+  left:50px;
+  top:55px;
+  border-style:solid ;
+  border-color:black;
+  border-width: thin;
+}
+.hgt{
+  height:70px;
+}
+.bold{
+  font-style: normal;
+  font-size: 20px;
+  size:15px;
+  }
+.aptdate{
+  position: absolute;
+  left:200px;
+}
+.bookdate{
+  position:absolute;
+  left:430px;
+}
+.amt{
+  position:absolute;
+  right:300px;
+}
+.status{
+  position:absolute;
+  right:130px;
+}
+.calendar{
+  position: relative;
+  right:-680px;
+  top: 100px;
+  display: inline-block;
 }

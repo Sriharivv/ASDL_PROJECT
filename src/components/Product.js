@@ -22,24 +22,16 @@ export default class Product extends Component {
               return (
             <React.Fragment>
 
-            <div className="cards-slider-wrapper1"  >
-
+            <div className="cards-slider-wrapper2"  >
                   {value.products.map(product=>(
                   <div>
                   {bool?
                   <React.Fragment>
-
                    <Link to="/login">
-                     <div>
-                      <img src={product.img} onClick={() => value.handleDetail(product.id)}/>
-                     </div>
+
+                        <img src={product.img} onClick={() => value.handleDetail(product.id)}/>
+
                     </Link>
-                    <div  className="title">
-                     {product.title}
-                     </div>
-                     <div  className="price ">
-                      ${product.price}
-                      </div>
                     </React.Fragment>
                     :
                     <React.Fragment>
@@ -55,20 +47,11 @@ export default class Product extends Component {
                        <div  className="price ">
                         ${product.price}
                         </div>
-
-                      </React.Fragment>
+                    </React.Fragment>
                     }
-
-
                   </div>))}
-
             </div>
-            <Hoverbuton className="next" onClick={value.scroll.bind(null,1)} >
-              <FontAwesomeIcon icon={faAngleDoubleRight} size="3x" style={{color:"black"}} className="icon1"/>
-             </Hoverbuton>
-             <Hoverbuton className="prev" onClick={value.scroll.bind(null,-1)} >
-               <FontAwesomeIcon icon={faAngleDoubleLeft} size="3x" style={{color:"black"}} className="icon1"/>
-             </Hoverbuton>
+
            <Logout/>
             </React.Fragment>
             );
@@ -77,20 +60,3 @@ export default class Product extends Component {
     );
   }
 }
-
-
-
-const Hoverbuton = styled.button`
-width:50px;
-padding:3em 0em
-border-radius: 4px;
-border:none;
-background-color:white;
-outline:none;
-opacity:.3;
-:hover{
-  background-color:white;
-  opacity:5;
-  border:none;
-	cursor: pointer;
-}`

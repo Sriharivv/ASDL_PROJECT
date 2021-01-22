@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { storeProducts, detailProduct } from "./data";
+import { hospitalList,hospital  } from "./data0";
 import $ from "jquery";
 
 const ProductContext = React.createContext();
@@ -7,6 +8,8 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component {
   state = {
     products: [],
+    hospitals:[],
+    hospital:hospital,
     detailProduct: detailProduct,
     cart: [],
     modalOpen: false,
@@ -16,11 +19,27 @@ class ProductProvider extends Component {
     cartTotal: 0,
     bool:true,
     show: false,
-
+    search:null,
+    current:"Appoinment",
+    appoinbg:"lightgrey",
+    presbg:"",
+    billbg:"",
+    medrepbg:"",
+    profsetbg:"",
   };
-  componentDidMount() {
+componentDidMount() {
     this.setProducts();
+    this.setHospitals();
+
   }
+
+
+
+  searchSpace=(event)=>{
+    let keyword = event.target.value;
+    this.setState({search:keyword})
+  };
+
 
   setProducts = () => {
     let products = [];
@@ -32,6 +51,18 @@ class ProductProvider extends Component {
       return { products };
     }, this.checkCartItems);
   };
+
+  setHospitals = () => {
+    let hospitals = [];
+    hospitalList.forEach(item => {
+      const singleItem = { ...item };
+      hospitals = [...hospitals, singleItem];
+    });
+    this.setState(() => {
+      return { hospitals };
+    }, this.checkCartItems);
+  };
+
 
   showModal = () => {
      this.setState({ show: true });
@@ -50,23 +81,7 @@ class ProductProvider extends Component {
     this.setState(() => {
       return { detailProduct: product };
     });
-  };
-  addToCart = id => {
-    let tempProducts = [...this.state.products];
-    const index = tempProducts.indexOf(this.getItem(id));
-    const product = tempProducts[index];
-    product.inCart = true;
-    product.count = 1;
-    const price = product.price;
-    product.total = price;
-
-    this.setState(() => {
-      return {
-        products: [...tempProducts],
-        cart: [...this.state.cart, product],
-        detailProduct: { ...product }
-      };
-    }, this.addTotals);
+    console.log(id);
   };
   openModal = id => {
     const product = this.getItem(id);
@@ -79,117 +94,67 @@ class ProductProvider extends Component {
       return { modalOpen: false };
     });
   };
-  increment = id => {
-    let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
-      return item.id === id;
-    });
-    const index = tempCart.indexOf(selectedProduct);
-    const product = tempCart[index];
-    product.count = product.count + 1;
-    product.total = product.count * product.price;
-    this.setState(() => {
-      return {
-        cart: [...tempCart]
-      };
-    }, this.addTotals);
-  };
-  decrement = id => {
-    let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
-      return item.id === id;
-    });
-    const index = tempCart.indexOf(selectedProduct);
-    const product = tempCart[index];
-    product.count = product.count - 1;
-    if (product.count === 0) {
-      this.removeItem(id);
-    } else {
-      product.total = product.count * product.price;
-      this.setState(() => {
-        return { cart: [...tempCart] };
-      }, this.addTotals);
-    }
-  };
-  getTotals = () => {
-    // const subTotal = this.state.cart
-    //   .map(item => item.total)
-    //   .reduce((acc, curr) => {
-    //     acc = acc + curr;
-    //     return acc;
-    //   }, 0);
-    let subTotal = 0;
-    this.state.cart.map(item => (subTotal += item.total));
-    const tempTax = subTotal * 0.1;
-    const tax = parseFloat(tempTax.toFixed(2));
-    const total = subTotal + tax;
-    return {
-      subTotal,
-      tax,
-      total
-    };
-  };
-  addTotals = () => {
-    const totals = this.getTotals();
-    this.setState(
-      () => {
-        return {
-          cartSubTotal: totals.subTotal,
-          cartTax: totals.tax,
-          cartTotal: totals.total
-        };
-      },
-      () => {
-        // console.log(this.state);
-      }
-    );
-  };
-  removeItem = id => {
-    let tempProducts = [...this.state.products];
-    let tempCart = [...this.state.cart];
-    const index = tempProducts.indexOf(this.getItem(id));
-    let removedProduct = tempProducts[index];
-    removedProduct.inCart = false;
-    removedProduct.count = 0;
-    removedProduct.total = 0;
 
-    tempCart = tempCart.filter(item => {
-      return item.id !== id;
-    });
+handleAppointments=()=>{
+  this.setState(()=>{
+    return {current: "Appoinment",
+    appoinbg: "lightgrey",
+    presbg:"",
+    billbg:"",
+    medrepbg:"",
+    profsetbg:"",};
+  });
+};
 
-    this.setState(() => {
-      return {
-        cart: [...tempCart],
-        products: [...tempProducts]
-      };
-    }, this.addTotals);
-  };
-  clearCart = () => {
-    this.setState(
-      () => {
-        return { cart: [] };
-      },
-      () => {
-        this.setProducts();
-        this.addTotals();
-      }
-    );
-  };
 
-  scroll(direction){
-      let far = $( '.cards-slider-wrapper1' ).width()/1.5*direction;
-      let pos = $('.cards-slider-wrapper1').scrollLeft() + far;
-      $('.cards-slider-wrapper1').animate( { scrollLeft: pos }, 500)
-    };
-    toggle=()=> {
-      let bool=true;
+handlePrescription=()=>{
+  this.setState(()=>{
+    return ( {current: "Prescription",
+    presbg: "lightgrey",
+    appoinbg:"",
+    billbg:"",
+    medrepbg:"",
+    profsetbg:"",
+      });
+  });
+};
 
-          this.setState((currentState)=>{
-            return{bool:!currentState.bool}
 
-          });
-        };
+handleBilling=()=>{
+  this.setState(()=>{
+    return ( {current: "Billing",
+    presbg: "",
+    appoinbg:"",
+    billbg:"lightgrey",
+    medrepbg:"",
+    profsetbg:"",
+      });
+  });
+};
 
+handleMedRec=()=>{
+  this.setState(()=>{
+    return ( {current: "Medrec",
+    presbg: "",
+    appoinbg:"",
+    billbg:"",
+    medrepbg:"lightgrey",
+    profsetbg:"",
+      });
+  });
+};
+
+handleProfset=()=>{
+  this.setState(()=>{
+    return ( {current: "ProfSet",
+    presbg: "",
+    appoinbg:"",
+    billbg:"",
+    medrepbg:"",
+    profsetbg:"lightgrey",
+      });
+  });
+};
 
   render() {
     return (
@@ -197,18 +162,13 @@ class ProductProvider extends Component {
         value={{
           ...this.state,
           handleDetail: this.handleDetail,
-          addToCart: this.addToCart,
-          openModal: this.openModal,
-          closeModal: this.closeModal,
-          increment: this.increment,
-          decrement: this.decrement,
-          removeItem: this.removeItem,
-          clearCart: this.clearCart,
-          scroll:this.scroll,
-          toggle:this.toggle,
-          showModal:this.showModal,
-          hideModal:this.hideModal,
-        }}
+          searchSpace:this.searchSpace,
+          handleAppointments:this.handleAppointments,
+          handlePrescription:this.handlePrescription,
+          handleMedRec:this.handleMedRec,
+          handleProfset:this.handleProfset,
+          handleBilling:this.handleBilling,
+          }}
       >
         {this.props.children}
       </ProductContext.Provider>

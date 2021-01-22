@@ -1,31 +1,29 @@
 import React, { Component } from "react";
 import Product from "./Product";
 import Title from "./Title";
-import { storeProducts } from "../data";
 import styled from "styled-components";
 import { ProductConsumer } from "../context";
 import Navbar1 from "./Navbar";
 import {Typography,Container} from  '@material-ui/core';
 import {faMapMarkerAlt,faRupeeSign} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-export default class ProductList extends Component {
-  render() {
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
+
+export default class HospitalList extends Component {
+  render() {
     return (
       <ProductConsumer>
-
         {value => {
           return (
-
           <React.Fragment>
             <Navbar1/>
+
         <div style={{ background: "lightgrey",height:'100%'}}>
 
-                    {value.products.map(product=> (
+                    {value.hospitals.map(product=> (
 
-
-                          <div  className="card container" onClick={()=>value.handleDetail(product.id)}>
+                          <div  className="card container" >
                             <div className="docdetails">
                               {product.title}
                             </div>
@@ -54,13 +52,13 @@ export default class ProductList extends Component {
 
                             <img src={product.img} />
                           </div>
-
                       )
                     )
                     }
 
 
              </div>
+             
              </React.Fragment>
       );
     }}
